@@ -25,7 +25,7 @@ const addSeparators = function(nStr, thousandsSep, decimalSep) {
 
 const numberFormat = function(opts_in) {
   const defaults = {
-    digitsAfterDecimal: 2,
+    digitsAfterDecimal: 4,
     scaler: 1,
     thousandsSep: ',',
     decimalSep: '.',
@@ -169,7 +169,7 @@ const getSort = function(sorters, attr) {
 const usFmt = numberFormat();
 const usFmtInt = numberFormat({digitsAfterDecimal: 0});
 const usFmtPct = numberFormat({
-  digitsAfterDecimal: 1,
+  digitsAfterDecimal: 4,
   scaler: 100,
   suffix: '%',
 });
