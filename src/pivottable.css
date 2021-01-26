@@ -1,3 +1,30 @@
+.metric_ok {
+    background: #f0fae8 !important;
+}
+.metric_warning {
+    background: #fcfcd9 !important;
+}
+.metric_critial {
+    background: #faceca !important;
+    animation: blinker 2.0s linear infinite;
+    color: #1c87c9;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.metric_null {
+    background: #9e9e9e !important;
+}
+@keyframes blinker {
+    30% { opacity: 0.5; }
+}
+.blink {
+    animation: blinker 0.6s linear infinite;
+    color: #1c87c9;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
 .pvtUi {
     color: #2a3f5f;
     font-family: Verdana;

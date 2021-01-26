@@ -42,6 +42,20 @@ const spanSize = function(arr, i, j) {
   return len;
 };
 
+const getFormatCell = function(value){
+  var background_color = '';
+  if (value>=99.95 && value<=99.98) {
+    background_color = 'metric_warning';
+  } else if (value<99.95) {
+    if(value){
+      background_color = 'metric_critial';
+    }
+  } else {
+    background_color = 'metric_ok';
+  }
+  return background_color;
+};
+
 function redColorScaleGenerator(values) {
   const min = Math.min.apply(Math, values);
   const max = Math.max.apply(Math, values);
@@ -220,9 +234,10 @@ function makeRenderer(opts = {}) {
                   })}
                   {colKeys.map(function(colKey, j) {
                     const aggregator = pivotData.getAggregator(rowKey, colKey);
+                    var cellStyle = getFormatCell(aggregator.value());
                     return (
                       <td
-                        className="pvtVal"
+                        className={`pvtVal ${cellStyle}`}
                         key={`pvtVal${i}-${j}`}
                         onClick={
                           getClickHandler &&
@@ -239,7 +254,7 @@ function makeRenderer(opts = {}) {
                     );
                   })}
                   <td
-                    className="pvtTotal"
+                    className={`pvtTotal ${getFormatCell(totalAggregator.value())}`}
                     onClick={
                       getClickHandler &&
                       getClickHandler(totalAggregator.value(), rowKey, [null])
@@ -262,9 +277,10 @@ function makeRenderer(opts = {}) {
 
               {colKeys.map(function(colKey, i) {
                 const totalAggregator = pivotData.getAggregator([], colKey);
+                var cellStyle = getFormatCell(totalAggregator.value());
                 return (
                   <td
-                    className="pvtTotal"
+                    className={`pvtVal ${cellStyle}`}
                     key={`total${i}`}
                     onClick={
                       getClickHandler &&
